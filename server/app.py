@@ -2,8 +2,10 @@ from bson.json_util import dumps
 from bson import Binary, Code
 from flask import Flask, render_template, request, jsonify
 from flask_pymongo import PyMongo
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/anyout"
 mongo = PyMongo(app)
 db = mongo.db
