@@ -4,7 +4,13 @@ import Router from "vue-router";
 Vue.use(Router);
 
 const router = new Router({
-  routes: []
+  routes: [
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("./components/Signin.vue")
+    }
+  ]
 });
 
 export default router;
