@@ -25,9 +25,9 @@ def home():
 @app.route('/register', methods=['POST'])
 def register():
     users = mongo.db.users
-    Username = request.get.json()['Username']
-    Email = request.get.json()['Email']
-    Password = hashpassword(request.json()['Password'])
+    Username = request.form['Username']
+    Email = request.get.form()['Email']
+    Password = hashpassword(request.form['Password'])
 
     user_id = users.insert({
         'Username' : Username,
