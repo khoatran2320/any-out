@@ -3,7 +3,7 @@ from bson import Binary, Code
 from flask import Flask, render_template, request, jsonify
 from flask_pymongo import PyMongo
 from flask_cors import CORS
-#from AuthenticationService.py import hash_Password(password)
+from AuthenticationService.py import AuthenticationService as auth
 
 app = Flask(__name__)
 CORS(app)
@@ -22,20 +22,17 @@ def home():
 # @app.route("/signup", methods=["GET", "POST"])
 # # sign abdel save credentials to database, hash password
 
-@app.route('/users/register', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def register():
-users = mongo.db.users
-first_name = request.get_json()['first_name']
-last_name = request.get_json()['last_name']
-email = request.get_json()['email']
-password = hash_Password(request.get_json()['password'])
+    Username = request.form()['Username']
+    Email = request.form()['Email']
+    Password = hash_Password(request.get_json()['Password'])
 
 
 user_id = users.insert({
-'first_name' :first_name,
-'last_name': last_name,
-'email' :email,
-'password':password,
+'Username' :Username,
+'Email' :Email,
+'Password':Password,
 })
 
 
