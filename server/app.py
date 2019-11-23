@@ -26,15 +26,18 @@ def home():
 def register():
     users = mongo.db.users
     Username = request.form['Username']
-    Email = request.get.form()['Email']
+    Email = request.get.form['Email']
     Password = hashpassword(request.form['Password'])
 
     user_id = users.insert({
         'Username' : Username,
         'Email' : Email,
         'Password':Password,
-        
-        })    
+        })
+
+    new_user = users.find_one({'_id': user_id})
+    result = {'Email':new_user['Email']+'registered'}
+    return jsonify({'result':result} )
 
 
 
