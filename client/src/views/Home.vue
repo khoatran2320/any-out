@@ -1,10 +1,12 @@
 <template>
   <div>
-    <h1>Home Page</h1>
-
-    <router-link to="/login">Login</router-link>
-    <router-link to="/browse">Browse</router-link>
-    <router-view></router-view>
+    <h1>Home View</h1>
+    <router-link class="btn btn-outline-primary" to="/signup">
+      Signup
+    </router-link>
+    <router-link to="/browse" class="btn btn-outline-primary"
+      >Browse</router-link
+    >
   </div>
 </template>
 <script>

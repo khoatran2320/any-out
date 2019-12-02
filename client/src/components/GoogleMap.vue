@@ -9,12 +9,12 @@
       <br />
     </div>
     <br />
-    <gmap-map :center="center" :zoom="12" style="width:100%;  height: 400px;">
+    <gmap-map :center="center" :zoom="8" style="width:100%;  height: 80vh;">
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
-        @click="center=m.position"
+        @click="center = m.position"
       ></gmap-marker>
     </gmap-map>
   </div>
@@ -25,8 +25,6 @@ export default {
   name: "GoogleMap",
   data() {
     return {
-      // default to Montreal to keep it simple
-      // change this to whatever makes sense
       center: { lat: 45.508, lng: -73.587 },
       markers: [],
       places: [],
