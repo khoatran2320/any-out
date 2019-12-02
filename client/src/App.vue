@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-    <signin />
+    <Home />
   </div>
 </template>
 
 <script>
-import Signin from "./components/Signin.vue";
-
+import Home from "./views/Home.vue";
 export default {
   name: "app",
-  components: {
-    Signin
-  }
+  components: { Home }
 };
 </script>

@@ -2,11 +2,11 @@ from bson.json_util import dumps
 from bson import Binary, Code
 from flask import Flask, render_template, request, jsonify
 from flask_pymongo import PyMongo
-from flask_cors import CORS
-from AuthenticationService.py import AuthenticationService as auth
+# from flask_cors import CORS
+# from AuthenticationService.py import AuthenticationService as auth
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/anyout"
 mongo = PyMongo(app)
 db = mongo.db
@@ -26,8 +26,8 @@ def home():
 def register():
     users = mongo.db.users
     Username = request.form['Username']
-    Email = request.get.form()['Email']
-    Password = hashpassword(request.form['Password'])
+    Email = request.form['Email']
+    Password = request.form["Password"]
 
     user_id = users.insert({
         'Username' : Username,
@@ -35,7 +35,7 @@ def register():
         'Password':Password,
         
         })    
-
+    
 
 
 
