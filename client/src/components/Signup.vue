@@ -18,7 +18,7 @@
 </template>
 <script>
 export default {
-  name: "Signin"
+  name: "Signup"
 };
 </script>
 <style scoped>
