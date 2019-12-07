@@ -2,12 +2,22 @@
   <div id="login-box">
     <div class="left-box">
       <h1>Sign Up</h1>
-
-      <input type="text" name="username" placeholder="Username" />
-      <input type="text" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Password" />
-      <input type="password" name="password2" placeholder="Confirm password" />
-      <input type="submit" name="signup-button" value="Sign Up" />
+      <form @submit.prevent="signup">
+        <input
+          type="text"
+          name="username"
+          v-model="username"
+          placeholder="Username"
+        />
+        <input type="text" name="email" v-model="email" placeholder="Email" />
+        <input
+          type="text"
+          name="password"
+          v-model="password"
+          placeholder="Password"
+        />
+        <button type="submit" name="signup-button">Sign Up</button>
+      </form>
     </div>
     <div class="right-box">
       <span class="signinwith">Already have an account?</span>
@@ -17,8 +27,20 @@
   </div>
 </template>
 <script>
+import { post } from "../scripts/post";
 export default {
-  name: "Signup"
+  name: "Signup",
+  methods: {
+    signup() {
+      // eslint-disable-next-line no-console
+      console.log("before");
+      post("/register", {
+        username: this.username,
+        email: this.email,
+        password: this.password
+      });
+    }
+  }
 };
 </script>
 <style scoped>
