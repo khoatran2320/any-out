@@ -1,4 +1,5 @@
 <template>
+<nav id = wrap>
   <div id="login-box">
     <div class="left-box">
       <h1>Sign In</h1>
@@ -13,6 +14,7 @@
     </div>
     <div class="or">OR</div>
   </div>
+  </nav>
 </template>
 <script>
 export default {
@@ -23,7 +25,7 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  background: #efefef;
+  background: #ededed;
   font-size: 16px;
   color: #777;
   font-family: sans-serif;
@@ -50,6 +52,7 @@ h1 {
   margin: 0 0 20px 62px;
   font-weight: 700;
   font-size: 28px;
+  color: #173F5F;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 input[type="text"],
@@ -72,9 +75,10 @@ input[type="password"] {
 input[type="submit"] {
   margin-bottom: 28px;
   margin-left: 50px;
+  margin-top: 10px;
   width: 120px;
   height: 32px;
-  background: #d4bba9;
+  background: #ED553B;
   border: none;
   border-radius: 2px;
   color: #fff;
@@ -103,11 +107,11 @@ input[type="submit"]:focus {
 }
 .or {
   position: absolute;
-  top: 180px;
+  top: 150px;
   left: 290px;
   width: 40px;
   height: 40px;
-  background: #efefef;
+  background: #F6D55C;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   line-height: 40px;
@@ -118,14 +122,14 @@ input[type="submit"]:focus {
   display: block;
   margin-bottom: 40px;
   font-size: 28px;
-  color: #616161;
+  color: #173F5F;
   text-align: center;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 button.sign-up {
   margin-bottom: 20px;
-  margin-top: 17px;
+  margin-top: 15px;
   margin-left: 55px;
   width: 100px;
   height: 36px;
@@ -136,6 +140,6 @@ button.sign-up {
   font-weight: 500;
   transition: 0.2s ease;
   cursor: pointer;
-  background-color: #d4bba9;
+  background-color: #ED553B;
 }
 </style>
