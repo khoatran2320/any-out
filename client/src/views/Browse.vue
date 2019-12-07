@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Browse</h1>
     <GoogleMap />
   </div>
 </template>
@@ -14,3 +15,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+h1 {
+  margin-left: 1rem;
+}
+</style>
