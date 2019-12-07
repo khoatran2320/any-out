@@ -1,4 +1,6 @@
-#!/Users/khoatran/Documents/any-out/env/bin/python3
+#!/bin/sh
+'''exec' "/home/abdelaziz's pc/any-out/server/env/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
