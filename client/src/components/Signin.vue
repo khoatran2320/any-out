@@ -1,17 +1,15 @@
 <template>
   <div id="login-box">
     <div class="left-box">
-      <h1>Sign Up</h1>
+      <h1>Sign In</h1>
 
       <input type="text" name="username" placeholder="Username" />
       <input type="text" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Password" />
-      <input type="password" name="password2" placeholder="Confirm password" />
-      <input type="submit" name="signup-button" value="Sign Up" />
+      <input type="submit" name="signup-button" value="SIGN IN" />
     </div>
     <div class="right-box">
-      <span class="signinwith">Already have an account?</span>
-      <button class="sign-in">sign in</button>
+      <span class="signupwith">Do You Need An Account?</span>
+      <button class="sign-up">REGISTER</button>
     </div>
     <div class="or">OR</div>
   </div>
@@ -31,16 +29,14 @@ body {
   font-family: sans-serif;
   font-weight: 300;
 }
-
 #login-box {
   position: relative;
   margin: 5% auto;
-  height: 400px;
+  height: 300px;
   width: 600px;
-  background: #fff;
+  background: #ededed;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
-
 .left-box {
   position: absolute;
   top: 0;
@@ -50,13 +46,12 @@ body {
   width: 300px;
   height: 400 px;
 }
-
 h1 {
-  margin: 0 0 20px 0;
-  font-weight: 300;
+  margin: 0 0 20px 62px;
+  font-weight: 700;
   font-size: 28px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-
 input[type="text"],
 input[type="password"] {
   display: block;
@@ -67,18 +62,19 @@ input[type="password"] {
   height: 32px;
   border: none;
   outline: none;
-  border-bottom: 1px solid #aaa;
+  border: 1px solid #aaa;
+  background: #ededed;
   font-family: sans-serif;
   font-weight: 400;
   font-size: 15px;
   transition: 0.2s ease;
 }
-
 input[type="submit"] {
   margin-bottom: 28px;
+  margin-left: 50px;
   width: 120px;
   height: 32px;
-  background: #9edceb;
+  background: #d4bba9;
   border: none;
   border-radius: 2px;
   color: #fff;
@@ -88,13 +84,11 @@ input[type="submit"] {
   transition: 0.2s ease;
   cursor: pointer;
 }
-
 input[type="submit"]:hover,
 input[type="submit"]:focus {
   background: #bee2e7;
   transition: 0.2s ease;
 }
-
 .right-box {
   position: absolute;
   top: 0;
@@ -107,11 +101,10 @@ input[type="submit"]:focus {
   background-size: cover;
   background-position: center;
 }
-
 .or {
   position: absolute;
   top: 180px;
-  left: 280px;
+  left: 290px;
   width: 40px;
   height: 40px;
   background: #efefef;
@@ -119,19 +112,21 @@ input[type="submit"]:focus {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   line-height: 40px;
   text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-
-.right-box .signinwith {
+.right-box .signupwith {
   display: block;
   margin-bottom: 40px;
   font-size: 28px;
-  color: #fff;
+  color: #616161;
   text-align: center;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-
-button.sign-in {
+button.sign-up {
   margin-bottom: 20px;
+  margin-top: 17px;
+  margin-left: 55px;
   width: 100px;
   height: 36px;
   border: none;
