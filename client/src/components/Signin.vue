@@ -1,12 +1,16 @@
 <template>
-<nav id = wrap>
+<nav id = "wrap">
+<div id = "header">
+<button class = "name">ANY OUT</button>
+</div>
   <div id="login-box">
     <div class="left-box">
       <h1>Sign In</h1>
-
+      <form action = "loginaction.php">
       <input type="text" name="username" placeholder="Username" />
-      <input type="text" name="email" placeholder="Email" />
+      <input type="text" name="email" placeholder="Password" />
       <input type="submit" name="signup-button" value="SIGN IN" />
+      </form>
     </div>
     <div class="right-box">
       <span class="signupwith">Do You Need An Account?</span>
@@ -31,9 +35,23 @@ body {
   font-family: sans-serif;
   font-weight: 300;
 }
+#header{
+  position: relative; 
+  margin: -10px -10px -10px -10px;
+  width: 102%; height: 60px;
+  background-color: #173F5F; 
+}
+
+.name{
+  margin: 0 auto; background-color: #173F5F;
+  color: white; margin-top: 15px; 
+  width: 150px; height: 50x; font-size: 20px;
+  border: none; font-weight: 900; margin-left: 45%;
+}
+
 #login-box {
   position: relative;
-  margin: 5% auto;
+  margin: 10% auto;
   height: 300px;
   width: 600px;
   background: #ededed;
@@ -54,6 +72,7 @@ h1 {
   font-size: 28px;
   color: #173F5F;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 input[type="text"],
 input[type="password"] {
