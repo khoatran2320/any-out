@@ -4,9 +4,22 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  state: {},
+  state: {
+    events: [
+      { lat: 42.3601, lng: -71.0589 },
+      {
+        lat: 42.4668,
+        lng: -70.9495,
+        content: "Abdel is gay"
+      }
+    ]
+  },
   mutations: {},
-  getters: {},
+  getters: {
+    getEvents: state => {
+      return state.events;
+    }
+  },
   actions: {}
 });
 
