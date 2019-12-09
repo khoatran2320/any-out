@@ -19,6 +19,11 @@ const router = new Router({
       component: () => import("./components/Signup.vue")
     },
     {
+      path: "/event",
+      name: "event",
+      component: () => import("./components/Event.vue")
+    },
+    {
       path: "/browse",
       name: "browse",
       component: () => import("./views/Browse.vue")

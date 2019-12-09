@@ -18,7 +18,7 @@
 </template>
 <script>
 export default {
-  name: "Signup"
+  name: "Signin"
 };
 </script>
 <style scoped>
@@ -31,7 +31,6 @@ body {
   font-family: sans-serif;
   font-weight: 300;
 }
-
 #login-box {
   position: relative;
   margin: 5% auto;
@@ -40,7 +39,6 @@ body {
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
-
 .left-box {
   position: absolute;
   top: 0;
@@ -50,13 +48,11 @@ body {
   width: 300px;
   height: 400 px;
 }
-
 h1 {
   margin: 0 0 20px 0;
   font-weight: 300;
   font-size: 28px;
 }
-
 input[type="text"],
 input[type="password"] {
   display: block;
@@ -73,7 +69,6 @@ input[type="password"] {
   font-size: 15px;
   transition: 0.2s ease;
 }
-
 input[type="submit"] {
   margin-bottom: 28px;
   width: 120px;
@@ -88,13 +83,11 @@ input[type="submit"] {
   transition: 0.2s ease;
   cursor: pointer;
 }
-
 input[type="submit"]:hover,
 input[type="submit"]:focus {
   background: #bee2e7;
   transition: 0.2s ease;
 }
-
 .right-box {
   position: absolute;
   top: 0;
@@ -104,10 +97,10 @@ input[type="submit"]:focus {
   width: 300px;
   height: 400px;
   /* background-image: url(./images/pic1.jpg); */
+  background-color: #417FA4;
   background-size: cover;
   background-position: center;
 }
-
 .or {
   position: absolute;
   top: 180px;
@@ -120,7 +113,6 @@ input[type="submit"]:focus {
   line-height: 40px;
   text-align: center;
 }
-
 .right-box .signinwith {
   display: block;
   margin-bottom: 40px;
@@ -129,7 +121,6 @@ input[type="submit"]:focus {
   text-align: center;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
-
 button.sign-in {
   margin-bottom: 20px;
   width: 100px;
