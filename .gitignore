@@ -1,5 +1,5 @@
 # Don't track content of these folders
-client/src/main.js
+client/src/scripts/gmaps.js
 # Compiled source #
 ###################
 *.com

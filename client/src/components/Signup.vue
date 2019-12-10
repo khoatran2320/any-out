@@ -1,44 +1,88 @@
 <template>
-  <div id="login-box">
-    <div class="left-box">
-      <h1>Sign Up</h1>
-      <form @submit.prevent="signup">
-        <input
-          type="text"
-          name="username"
-          v-model="username"
-          placeholder="Username"
-        />
-        <input type="text" name="email" v-model="email" placeholder="Email" />
-        <input
-          type="text"
-          name="password"
-          v-model="password"
-          placeholder="Password"
-        />
-        <button type="submit" name="signup-button">Sign Up</button>
-      </form>
+  <div>
+    <div v-if="signupSuccess">
+      <b-alert
+        variant="success"
+        @dismissed="signupFeedback"
+        :show="!signupFailed"
+        dismissible
+        >Signup Successful! Close the banner to return to home page.</b-alert
+      >
     </div>
-    <div class="right-box">
-      <span class="signinwith">Already have an account?</span>
-      <button class="sign-in">sign in</button>
+    <div v-if="signupFailed">
+      <b-alert
+        variant="danger"
+        @dismissed="signupFeedbackFailed"
+        :show="!this.signupSuccess"
+        dismissible
+        >Signup Failed! Please try again.</b-alert
+      >
     </div>
-    <div class="or">OR</div>
+    <div id="login-box">
+      <div class="left-box">
+        <h1>Sign Up</h1>
+        <form @submit.prevent="signup">
+          <input
+            type="text"
+            name="username"
+            v-model="username"
+            placeholder="Username"
+          />
+          <input type="text" name="email" v-model="email" placeholder="Email" />
+          <input
+            type="password"
+            name="password"
+            v-model="password"
+            placeholder="Password"
+          />
+          <button type="submit" name="signup-button">Sign Up</button>
+        </form>
+      </div>
+      <div class="right-box">
+        <span class="signinwith">Already have an account?</span>
+        <button class="sign-in">sign in</button>
+      </div>
+      <div class="or">OR</div>
+    </div>
   </div>
 </template>
 <script>
 import { post } from "../scripts/post";
+
 export default {
   name: "Signup",
+  data: function() {
+    return {
+      signupSuccess: false,
+      signupFailed: false
+    };
+  },
   methods: {
+    signupFeedback() {
+      this.signupSuccess = false;
+
+      this.$router.push("/");
+    },
+    signupFeedbackFailed() {
+      this.signupFailed = false;
+
+      window.location.reload(true);
+    },
     signup() {
-      // eslint-disable-next-line no-console
-      console.log("before");
       post("/register", {
         username: this.username,
         email: this.email,
         password: this.password
-      });
+        /* eslint-disable no-unused-vars */
+      })
+        .then(response => {
+          this.signupSuccess = true;
+          this.signupFailed = false;
+        })
+        .catch(err => {
+          this.signupSuccess = false;
+          this.signupFailed = true;
+        });
     }
   }
 };

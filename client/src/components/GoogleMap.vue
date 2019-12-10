@@ -12,40 +12,10 @@ export default {
       const google = await gmapsInit();
       // const geocoder = new google.maps.Geocoder();
       const map = new google.maps.Map(this.$el, {
-        zoom: 8,
-        center: { lat: 42.3601, lng: -71.0589 }
+        zoom: 14,
+        center: { lat: 42.350695, lng: -71.106439 }
       });
-
-      // geocoder.geocode({ address: "Boston" }, (results, status) => {
-      //   if (status !== "OK" || !results[0]) {
-      //     throw new Error(status);
-      //   }
-
-      //   map.setCenter(results[0].geometry.location);
-      //   map.fitBounds(results[0].geometry.viewport);
-      // });
       /* eslint-disable no-unused-vars */
-      // google.maps.event.addListener(map, "click", function(event) {
-      //   // Add marker
-      //   var marker = new google.maps.Marker({
-      //     position: event.latLng,
-      //     map: map
-      //     //icon:props.iconImage
-      //   });
-      // });
-      // // eslint-disable-next-line no-console
-      // console.log(this.$store.getters["getEvents"][0]["lat"]);
-      // // eslint-disable-next-line no-console
-      // console.log(this.$store.getters["getEvents"][0]["lng"]);
-
-      // const marker = new google.maps.Marker({
-      //   position: {
-      //     lat: this.$store.getters["getEvents"][0]["lat"],
-      //     lng: this.$store.getters["getEvents"][0]["lng"]
-      //   },
-      //   map: map
-      // });
-
       const markers = this.$store.getters["getEvents"].map(location => {
         const marker = new google.maps.Marker({
           position: {
@@ -54,12 +24,12 @@ export default {
           },
           map: map
         });
-
-        marker.addListener(`click`, () => {
-          var infoWindow = new google.maps.InfoWindow({
-            content: location.content
-          });
-          infoWindow.open(map, marker);
+        var infowindow = new google.maps.InfoWindow();
+        google.maps.event.addListener(marker, "click", function() {
+          infowindow.setContent(
+            `<div style="font-weight:700;padding-bottom:0px;text-align:center;font-size:1rem;">${location.content.title}</div><div style="padding-top:.3rem;text-align:center;">${location.content.description}</div><div style="text-align:center; padding-top: .2rem;">Time: ${location.content.startTime} - ${location.content.endTime}</div><div style="text-align:center;"><a href="https://www.google.com/" target="_blank">Learn More</a></div>`
+          );
+          infowindow.open(map, this);
         });
         return marker;
       });

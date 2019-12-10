@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_pymongo import PyMongo
 
 from flask_cors import CORS
+
 import AuthenticationService
 #from AuthenticationService.py import AuthenticationService as auth
 
@@ -11,8 +12,12 @@ import AuthenticationService
 
 
 app = Flask(__name__)
-# CORS(app)
+
 app.config["MONGO_URI"] = "mongodb://localhost:27017/anyout"
+app.config['SECRET_KEY'] = 'secret'
+app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app, resources={r"*": {"origins": "http://localhost:8080"}})
+
 mongo = PyMongo(app)
 db = mongo.db
 
@@ -30,51 +35,37 @@ def home():
 @app.route('/register', methods=['POST'])
 def register():
     users = mongo.db.users
-    Username = request.form['Username']
-    Email = request.form['Email']
 
-    Password = request.form['Password']
+    # user_id =
+    users.insert_one({
+        'username': request.form['username'],
+        'email': request.form['email'],
+        'password': request.form['password'],
 
+    })
 
-    user_id = users.insert({
-        'Username' : Username,
-        'Email' : Email,
-        'Password':Password,
+    # new_user = users.find_one({'_id': user_id})
+    # result = {'Email': new_user['Email']+'registered'}
 
-        })
-
-    new_user = users.find_one({'_id': user_id})
-    result = {'Email':new_user['Email']+'registered'}
-
-
-
-
-    
     return "Sign Up successful!"
 
 
-
-
-
-@app.route('/Events/CreateEvent', methods=['GET','POST'])
-#@login_required
+@app.route('/Events/CreateEvent', methods=['GET', 'POST'])
+# @login_required
 def new_event():
-    events= mongo.db.events
+    events = mongo.db.events
     title = request.form['title']
     address = request.form['address']
     description = request.form['description']
     capacity = request.form['capacity']
 
-    event_id = events.insert({'title':title,
-                             'address':address,
-                             'description':description,
-                             'capacity':capacity,
-                            })
+    event_id = events.insert({'title': title,
+                              'address': address,
+                              'description': description,
+                              'capacity': capacity,
+                              })
 
     return "Event Created"
-    
-    
-    
 
 
 if __name__ == "__main__":

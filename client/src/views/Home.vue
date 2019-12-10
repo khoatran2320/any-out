@@ -7,6 +7,7 @@
     <router-link to="/browse" class="btn btn-outline-primary"
       >Browse</router-link
     >
+
   </div>
 </template>
 <script>
