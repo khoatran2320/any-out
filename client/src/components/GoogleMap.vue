@@ -1,66 +1,55 @@
 <template>
-  <div>
-    <div>
-      <h2>Search and add a pin</h2>
-      <label>
-        <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
-        <button @click="addMarker">Add</button>
-      </label>
-      <br />
-    </div>
-    <br />
-    <gmap-map :center="center" :zoom="12" style="width:100%;  height: 85vh;">
-      <gmap-marker
-        :key="index"
-        v-for="(m, index) in markers"
-        :position="m.position"
-        @click="center = m.position"
-      ></gmap-marker>
-    </gmap-map>
-  </div>
+  <div class="App" />
 </template>
 
 <script>
+import gmapsInit from "../scripts/gmaps";
+
 export default {
   name: "GoogleMap",
-  data() {
-    return {
-      center: { lat: 45.508, lng: -73.587 },
-      markers: [],
-      places: [],
-      currentPlace: null
-    };
-  },
-
-  mounted() {
-    this.geolocate();
-  },
-
-  methods: {
-    // receives a place object via the autocomplete component
-    setPlace(place) {
-      this.currentPlace = place;
-    },
-    addMarker() {
-      if (this.currentPlace) {
-        const marker = {
-          lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng()
-        };
-        this.markers.push({ position: marker });
-        this.places.push(this.currentPlace);
-        this.center = marker;
-        this.currentPlace = null;
-      }
-    },
-    geolocate: function() {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+  async mounted() {
+    try {
+      const google = await gmapsInit();
+      // const geocoder = new google.maps.Geocoder();
+      const map = new google.maps.Map(this.$el, {
+        zoom: 14,
+        center: { lat: 42.350695, lng: -71.106439 }
       });
+      /* eslint-disable no-unused-vars */
+      const markers = this.$store.getters["getEvents"].map(location => {
+        const marker = new google.maps.Marker({
+          position: {
+            lat: location["lat"],
+            lng: location["lng"]
+          },
+          map: map
+        });
+        var infowindow = new google.maps.InfoWindow();
+        google.maps.event.addListener(marker, "click", function() {
+          infowindow.setContent(
+            `<div style="font-weight:700;padding-bottom:0px;text-align:center;font-size:1rem;">${location.content.title}</div><div style="padding-top:.3rem;text-align:center;">${location.content.description}</div><div style="text-align:center; padding-top: .2rem;">Time: ${location.content.startTime} - ${location.content.endTime}</div><div style="text-align:center;"><a href="https://www.google.com/" target="_blank">Learn More</a></div>`
+          );
+          infowindow.open(map, this);
+        });
+        return marker;
+      });
+    } catch (error) {
+      // console.error(error);
     }
   }
 };
 </script>
+
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  width: 60vw;
+  height: 90vh;
+  border-radius: 1%;
+}
+</style>

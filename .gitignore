@@ -37,3 +37,4 @@ client/src/main.js
 .Trashes
 ehthumbs.db
 Thumbs.db
+.DS_Store

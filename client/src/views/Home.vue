@@ -1,22 +1,11 @@
 <template>
   <div>
-    <h1>Home</h1>
-    <router-link class="btn btn-outline-primary" to="/signup">
-      Sign up
-    </router-link>
-    <router-link class="btn btn-outline-primary" to="/signin">
-      Sign in
-    </router-link>
-    <router-link class="btn btn-outline-primary" to="/event">
-      Event
-    </router-link>
-    <router-link to="/browse" class="btn btn-outline-primary">
-      Browse
-    </router-link>
+    <h1>Home View</h1>
+    <router-link class="btn btn-outline-primary" to="/signup">Signup</router-link>
+    <router-link to="/signin" class="btn btn-outline-primary">Signin</router-link>
+    <router-link to="/browse" class="btn btn-outline-primary">Browse</router-link>
+    <router-link to="/create-event" class="btn btn-outline-primary">Create Event</router-link>
   </div>
-
-
-
 </template>
 <script>
 export default {

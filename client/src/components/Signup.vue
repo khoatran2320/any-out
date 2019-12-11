@@ -1,24 +1,118 @@
 <template>
-  <div id="login-box">
-    <div class="left-box">
-      <h1>Sign Up</h1>
-
-      <input type="text" name="username" placeholder="Username" />
-      <input type="text" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Password" />
-      <input type="password" name="password2" placeholder="Confirm password" />
-      <input type="submit" name="signup-button" value="Sign Up" />
+  <div>
+    <div v-if="signupSuccess">
+      <b-alert
+        variant="success"
+        @dismissed="signupFeedback"
+        :show="!signupFailed"
+        dismissible
+      >Signup Successful! Close the banner to return to home page.</b-alert>
     </div>
-    <div class="right-box">
-      <span class="signinwith">Already have an account?</span>
-      <button class="sign-in">sign in</button>
+    <div v-if="signupFailed">
+      <b-alert
+        variant="danger"
+        @dismissed="signupFeedbackFailed"
+        :show="!this.signupSuccess"
+        dismissible
+      >Signup Failed! Please try again.</b-alert>
     </div>
-    <div class="or">OR</div>
+    <div id="login-box">
+      <div class="left-box">
+        <h1>Sign Up</h1>
+        <form
+          @submit.prevent="signup"
+          oninput="password2.setCustomValidity(password2.value != password.value ? 'Passwords do not match.' : '')"
+        >
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            class="form-control"
+            v-model="username"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            class="form-control"
+            v-model="email"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            v-model="password"
+            placeholder="Password"
+            class="form-control"
+            required
+          />
+          <input
+            type="password"
+            name="password2"
+            placeholder="Confirm Password"
+            class="form-control"
+            required
+          />
+          <div class="signupDiv">
+            <button type="submit" name="signup-button" class="btn btn-outline-primary">Sign Up</button>
+          </div>
+        </form>
+      </div>
+      <div class="right-box">
+        <span class="signinwith">Already have an account?</span>
+        <div class="signupDiv">
+          <button class="btn btn-outline-primary" @click="loginRedirect">Log in</button>
+        </div>
+      </div>
+      <div class="or">OR</div>
+    </div>
   </div>
 </template>
 <script>
+import { post } from "../scripts/post";
+
 export default {
-  name: "Signin"
+  name: "Signup",
+  data: function() {
+    return {
+      signupSuccess: false,
+      signupFailed: false
+    };
+  },
+  methods: {
+    signupFeedback() {
+      this.signupSuccess = false;
+
+      this.$router.push("/");
+    },
+    signupFeedbackFailed() {
+      this.signupFailed = false;
+
+      window.location.reload(true);
+    },
+    loginRedirect() {
+      this.$router.push("/login");
+    },
+    signup() {
+      post("/register", {
+        username: this.username,
+        email: this.email,
+        password: this.password
+        /* eslint-disable no-unused-vars */
+      })
+        .then(response => {
+          this.signupSuccess = true;
+          this.signupFailed = false;
+        })
+        .catch(err => {
+          this.signupSuccess = false;
+          this.signupFailed = true;
+        });
+    }
+  }
 };
 </script>
 <style scoped>
@@ -31,6 +125,7 @@ body {
   font-family: sans-serif;
   font-weight: 300;
 }
+
 #login-box {
   position: relative;
   margin: 5% auto;
@@ -39,6 +134,7 @@ body {
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
+
 .left-box {
   position: absolute;
   top: 0;
@@ -48,12 +144,15 @@ body {
   width: 300px;
   height: 400 px;
 }
+
 h1 {
   margin: 0 0 20px 0;
   font-weight: 300;
   font-size: 28px;
 }
+
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   display: block;
   box-sizing: border-box;
@@ -69,6 +168,7 @@ input[type="password"] {
   font-size: 15px;
   transition: 0.2s ease;
 }
+
 input[type="submit"] {
   margin-bottom: 28px;
   width: 120px;
@@ -83,11 +183,13 @@ input[type="submit"] {
   transition: 0.2s ease;
   cursor: pointer;
 }
+
 input[type="submit"]:hover,
 input[type="submit"]:focus {
   background: #bee2e7;
   transition: 0.2s ease;
 }
+
 .right-box {
   position: absolute;
   top: 0;
@@ -97,10 +199,11 @@ input[type="submit"]:focus {
   width: 300px;
   height: 400px;
   /* background-image: url(./images/pic1.jpg); */
-  background-color: #417FA4;
+
   background-size: cover;
   background-position: center;
 }
+
 .or {
   position: absolute;
   top: 180px;
@@ -113,25 +216,19 @@ input[type="submit"]:focus {
   line-height: 40px;
   text-align: center;
 }
+
 .right-box .signinwith {
+  padding-top: 5rem;
+
   display: block;
   margin-bottom: 40px;
   font-size: 28px;
-  color: #fff;
+  font-weight: 300;
   text-align: center;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
-button.sign-in {
-  margin-bottom: 20px;
-  width: 100px;
-  height: 36px;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  font-family: sans-serif;
-  font-weight: 500;
-  transition: 0.2s ease;
-  cursor: pointer;
-  background-color: #d4bba9;
+.signupDiv {
+  margin-top: 0;
+  text-align: center;
+  width: 100%;
 }
 </style>
