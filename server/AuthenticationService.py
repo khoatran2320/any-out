@@ -1,12 +1,8 @@
-# login request handling Harry
-# sign abdel
-
 from flask import current_app as app
 from app import mongo
 
 
 import hashlib
-
 
 
 def hashPassword(self, password):

@@ -52,7 +52,6 @@ router.beforeEach((to, from, next) => {
     if (auth) {
       next();
     } else {
-      //redirect to login page if user is not authorized to view dashboard
       next({
         path: "/login",
         query: { redirect: to.fullPath }

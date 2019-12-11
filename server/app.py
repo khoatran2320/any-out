@@ -27,26 +27,15 @@ def home():
     return dumps(mongo.db.users.find())
 
 
-# @app.route("/login", methods=["GET", "POST"])
-# # login harry, compare credentials to database
-# @app.route("/signup", methods=["GET", "POST"])
-# # sign abdel save credentials to database, hash password
-
 @app.route('/register', methods=['POST'])
 def register():
     users = mongo.db.users
-
-    # user_id =
     users.insert_one({
         'username': request.form['username'],
         'email': request.form['email'],
         'password': request.form['password'],
 
     })
-
-    # new_user = users.find_one({'_id': user_id})
-    # result = {'Email': new_user['Email']+'registered'}
-
     return "Sign Up successful!"
 
 
