@@ -50,20 +50,21 @@ def register():
     return "Sign Up successful!"
 
 
-@app.route('/Events/CreateEvent', methods=['GET', 'POST'])
+@app.route('/createEvent', methods=['POST'])
 # @login_required
 def new_event():
     events = mongo.db.events
     title = request.form['title']
     address = request.form['address']
+    lat = request.form['lat']
+    lng = request.form['lng']
     description = request.form['description']
+    startTime = request.form['startTime']
+    endTime = request.form['endTime']
     capacity = request.form['capacity']
 
-    event_id = events.insert({'title': title,
-                              'address': address,
-                              'description': description,
-                              'capacity': capacity,
-                              })
+    events.insert_one({'title': title, 'description': description, 'address': address, 'lat': lat,
+                       'lng': lng, 'startTime': startTime, 'endTime': endTime, 'capacity': capacity, })
 
     return "Event Created"
 
