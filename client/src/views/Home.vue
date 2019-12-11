@@ -60,12 +60,12 @@ body{
 }
 
 .Browse{
-  margin-top: 3%; margin-left: 37.8%; border: none; color: #404040; text-align: center;
+  margin-top: 5%; position: absolute; left: 50%; border: none; color: #404040; text-align: center;
   width: 100px; height: 45px; font-weight: 600; font-size: 22px; background-color: #e6e3da;
 }
 
 .Create{
-  margin-top: 3%; margin-left: 0.5%; border: none; color: #404040;
+  margin-top: 5%; margin-left: 0.5%; border: none; color: #404040;
   width: 155px; height: 45px; font-weight: 600; font-size: 22px; background-color: #e6e3da;
   
 }
