@@ -1,62 +1,132 @@
 <template>
-<nav id = "wrap">
-<div id = "header">
-<button class = "name">ANY OUT</button>
-</div>
-  <div id="login-box">
-    <div class="left-box">
-      <h1>Sign In</h1>
-      <form action = "loginaction.php">
-      <input type="text" name="username" placeholder="Username" />
-      <input type="text" name="email" placeholder="Password" />
-      <input type="submit" name="signup-button" value="SIGN IN" />
-      </form>
+  <div>
+    <div v-if="signipSuccess">
+      <b-alert
+        variant="success"
+        @dismissed="signipFeedback"
+        :show="!signinFailed"
+        dismissible
+      >Signin Successful! Close the banner to return to home page.</b-alert>
     </div>
-    <div class="right-box">
-      <span class="signupwith">Do You Need An Account?</span>
-      <button class="sign-up">REGISTER</button>
+    <div v-if="signinFailed">
+      <b-alert
+        variant="danger"
+        @dismissed="signinFeedbackFailed"
+        :show="!this.signinSuccess"
+        dismissible
+      >Signin Failed! Please try again.</b-alert>
     </div>
-    <div class="or">OR</div>
+    <div id="login-box">
+      <div class="left-box">
+        <h1>Sign In</h1>
+        <form
+          @submit.prevent="signin"
+        >
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            class="form-control"
+            v-model="username"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            class="form-control"
+            v-model="email"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            v-model="password"
+            placeholder="Password"
+            class="form-control"
+            required
+          />
+          <div class="signinDiv">
+            <button type="submit" name="signin-button" class="btn btn-outline-primary">Sign In</button>
+          </div>
+        </form>
+      </div>
+      <div class="right-box">
+        <span class="signinwith">Need an account?</span>
+        <div class="signinDiv">
+          <button class="btn btn-outline-primary" @click="loginRedirect">Sign Up</button>
+        </div>
+      </div>
+      <div class="or">OR</div>
+    </div>
   </div>
-  </nav>
 </template>
 <script>
+import { post } from "../scripts/post";
+
 export default {
-  name: "Signin"
+  name: "Signin",
+  data: function() {
+    return {
+      signinSuccess: false,
+      signinFailed: false
+    };
+  },
+  methods: {
+    signinFeedback() {
+      this.signinSuccess = false;
+
+      this.$router.push("/");
+    },
+    signinFeedbackFailed() {
+      this.signinFailed = false;
+
+      window.location.reload(true);
+    },
+    loginRedirect() {
+      this.$router.push("/login");
+    },
+    signin() {
+      post("/register", {
+        username: this.username,
+        email: this.email,
+        password: this.password
+        /* eslint-disable no-unused-vars */
+      })
+        .then(response => {
+          this.signinSuccess = true;
+          this.signinFailed = false;
+        })
+        .catch(err => {
+          this.signinSuccess = false;
+          this.signinFailed = true;
+        });
+    }
+  }
 };
 </script>
 <style scoped>
 body {
   margin: 0;
   padding: 0;
-  background: #ededed;
+  background: #efefef;
   font-size: 16px;
   color: #777;
   font-family: sans-serif;
   font-weight: 300;
 }
-#header{
-  position: relative; 
-  margin: -10px -10px -10px -10px;
-  width: 102%; height: 60px;
-  background-color: #173F5F; 
-}
-
-.name{
-  margin: 0 auto; background-color: #173F5F;
-  color: white; margin-top: 15px; 
-  width: 150px; height: 50x; font-size: 20px;
-  border: none; font-weight: 900; margin-left: 45%;
-}
 
 #login-box {
   position: relative;
-  margin: 10% auto;
-  height: 300px;
+  margin: 5% auto;
+  height: 400px;
   width: 600px;
-  background: #ededed;
+  background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
+
 .left-box {
   position: absolute;
   top: 0;
@@ -66,15 +136,15 @@ body {
   width: 300px;
   height: 400 px;
 }
+
 h1 {
-  margin: 0 0 20px 62px;
-  font-weight: 700;
+  margin: 0 0 20px 0;
+  font-weight: 300;
   font-size: 28px;
-  color: #173F5F;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
+
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   display: block;
   box-sizing: border-box;
@@ -84,20 +154,18 @@ input[type="password"] {
   height: 32px;
   border: none;
   outline: none;
-  border: 1px solid #aaa;
-  background: #ededed;
+  border-bottom: 1px solid #aaa;
   font-family: sans-serif;
   font-weight: 400;
   font-size: 15px;
   transition: 0.2s ease;
 }
+
 input[type="submit"] {
   margin-bottom: 28px;
-  margin-left: 50px;
-  margin-top: 10px;
   width: 120px;
   height: 32px;
-  background: #ED553B;
+  background: #9edceb;
   border: none;
   border-radius: 2px;
   color: #fff;
@@ -107,11 +175,13 @@ input[type="submit"] {
   transition: 0.2s ease;
   cursor: pointer;
 }
+
 input[type="submit"]:hover,
 input[type="submit"]:focus {
   background: #bee2e7;
   transition: 0.2s ease;
 }
+
 .right-box {
   position: absolute;
   top: 0;
@@ -120,45 +190,36 @@ input[type="submit"]:focus {
   padding: 40px;
   width: 300px;
   height: 400px;
-  /* background-image: url(./images/pic1.jpg); */
+
   background-size: cover;
   background-position: center;
 }
+
 .or {
   position: absolute;
-  top: 150px;
-  left: 290px;
+  top: 180px;
+  left: 280px;
   width: 40px;
   height: 40px;
-  background: #F6D55C;
+  background: #efefef;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   line-height: 40px;
   text-align: center;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-.right-box .signupwith {
+
+.right-box .signinwith {
+  padding-top: 5rem;
+
   display: block;
   margin-bottom: 40px;
   font-size: 28px;
-  color: #173F5F;
+  font-weight: 300;
   text-align: center;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-button.sign-up {
-  margin-bottom: 20px;
-  margin-top: 15px;
-  margin-left: 55px;
-  width: 100px;
-  height: 36px;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  font-family: sans-serif;
-  font-weight: 500;
-  transition: 0.2s ease;
-  cursor: pointer;
-  background-color: #ED553B;
+.signupDiv {
+  margin-top: 0;
+  text-align: center;
+  width: 100%;
 }
 </style>

@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <signin />
+    <router-view>
+      <router-link to="/"></router-link>
+    </router-view>
   </div>
 </template>
 
 <script>
-import Signin from "./components/Signin.vue";
-
+// import Home from "./views/Home.vue";
 export default {
-  name: "app",
-  components: {
-    Signin
-  }
+  name: "app"
+  // components: { Home }
 };
 </script>

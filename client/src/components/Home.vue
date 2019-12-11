@@ -1,49 +1,76 @@
 <template>
     <nav id = "wrap">
         <div class = "header">
-            <button class = "name">ANY OUT</button>
+            <button class = "name"><img class = "image" src = "./Image/LOGO copy.png"></button>
             <button class = "SignIn">SIGN IN</button>
             <button class = "Join">JOIN</button>
         </div>
-        <div class = "main">
-            <div class = "logo">
-            <img src="client/src/LOGO.jpg">
+        <div id = "main">
+            <div class = "description"> 
+            <h1> WHATEVER </h1>
             </div>
         </div>
     </nav>
 </template>
+
 <script>
 export default {
-    name: 'Home'
+name: 'Home'
 }
 </script>
+
 <style scoped>
-#logo{
-    position: relative; 
-  margin: -10px -10px -10px -10px;
-  width: 102%; height: 50px;
+body{
+  margin: 0;
+  padding: 0;
+  color: #777;
+  font-weight: 300;
+}
+
+
+.header{
+  margin: -8px -10px -10px -10px;
+  width: 102%; height: 60px;
   background-color: #173F5F; 
 }
 
+.image{
+    width: 50px; height: 50px;
+}
+
 .name{
-    margin: 0 auto; background-color: #173F5F;
-    color: white; margin-top: 15px; 
-    width: 150px; height: 50x; font-size: 20px;
-    border: none; font-weight: 900; margin-left: 3%;
+    background-color: #173F5F; margin-top: 3px; 
+    border: none; margin-left: 5%;
 }
 
 .SignIn{
     background-color: #173F5F; color: #3CAEA3;
-    margin-top: 15px; width: 150px; height: 50px; font-size: 19px;
-    border: none; font-weight: 700; margin-left: 70%; 
-    text-decoration-line: underline; font-style: italic;
+    margin-top: 3px; width: 130px; height: 50px; font-size: 19px;
+    border: none; font-weight: 700; margin-left: 60%;
+    text-decoration-line: underline; 
 }
 
 .Join{
     background-color: #173F5F; color: #ED553B;
-    margin-top: 15px; width: 100px; height: 50px; font-size: 19px; 
-    border: none; font-weight: 700; margin-left: 85%;
-    font-style: italic; text-decoration-line: underline;
+    margin-top: 0px; width: 80px; height: 50px; font-size: 19px; 
+    border: none; font-weight: 700; margin-left: 0.5%; margin-right: 0;
+    text-decoration-line: underline;
+}
+
+#main{
+}
+
+.description{
+    margin-left: 50%;
+}
+
+.desc{
+
+}
+
+h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 </style>
