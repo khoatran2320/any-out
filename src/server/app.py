@@ -1,6 +1,6 @@
 
-from bson.json_util import dumps
-from flask import Flask, render_template, request, jsonify, Response, session
+# from bson.json_util import dumps
+from flask import Flask, render_template, request, jsonify, Response, session, jsonify
 from flask_pymongo import PyMongo
 
 from flask_cors import CORS
@@ -27,9 +27,9 @@ mongo = PyMongo(app)
 db = mongo.db
 
 
-@app.route("/", methods=["GET"])
-def home():
-    return dumps(mongo.db.users.find())
+# @app.route("/", methods=["GET"])
+# def home():
+#     return dumps(mongo.db.users.find())
 
 
 @app.route("/login", methods=['POST'])
@@ -44,11 +44,23 @@ def login():
     return Response(status=400)
 
 
-# @app.route("/get-events", methods=['GET'])
-# def getEvents():
-#     cursors = mongo.db.events.find()
-#     return_response = {}
-#     for event in cursors:
+@app.route("/get-events", methods=['GET'])
+def getEvents():
+    cursors = mongo.db.events.find()
+    return_events = {}
+    for doc in cursors:
+        event = {
+            'title': doc['title'],
+            'description': doc['description'],
+            'address': doc['address'],
+            'lat': doc['lat'],
+            'lng': doc['lng'],
+            'startTime': doc['startTime'],
+            'endTime': doc['endTime'],
+            'capacity': doc['capacity']
+        }
+        return_events[doc['id']] = event
+    return return_events
 
 
 @app.route('/register', methods=['POST'])
