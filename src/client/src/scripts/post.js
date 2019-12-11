@@ -1,3 +1,4 @@
+//most of the code from this page is from my other project obtained from https://github.com/Hack4Impact-Boston-University/agriworks_portal
 import axios from "axios";
 
 const apiUrl = "http://localhost:4000";
@@ -21,6 +22,19 @@ export function post(endpoint, payload) {
   return new Promise((resolve, reject) => {
     axios
       .post(apiUrl + endpoint, urlEncode(payload), axiosConfig)
+      .then(response => {
+        resolve(response);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+}
+
+export function get(endpoint) {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(apiUrl + endpoint, axiosConfig)
       .then(response => {
         resolve(response);
       })

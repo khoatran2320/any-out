@@ -1,3 +1,5 @@
+//Function by Markus Oberlehner obtained from https://markus.oberlehner.net/blog/using-the-google-maps-api-with-vue/
+
 const API_KEY = "AIzaSyBTSNtoIvVBgrxt6EjTXSx3CwjrUm7izEY";
 const CALLBACK_NAME = "gmapsCallback";
 

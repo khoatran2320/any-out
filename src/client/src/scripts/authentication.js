@@ -1,3 +1,4 @@
+//cookie functions obtained from https://plainjs.com/javascript/utilities/set-cookie-get-cookie-and-delete-cookie-5/
 export function getCookie(name) {
   var v = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
   return v ? v[2] : null;

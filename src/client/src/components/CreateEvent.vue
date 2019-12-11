@@ -1,22 +1,16 @@
+// Places Autocomplete was implemented with the help of Henrik Fogelberg's code obtained at https://medium.com/dailyjs/google-places-autocomplete-in-vue-js-350aa934b18d
+
 <template>
   <div>
     <div>
-      <b-alert
-        variant="success"
-        @dismissed="submitFeedback"
-        :show="submitSuccess"
-        dismissible
-        >Successfully created event! Close the banner to return to home
-        page.</b-alert
-      >
-      <b-alert
-        variant="danger"
-        @dismissed="submitFeedbackFailed"
-        :show="submitFailed"
-        dismissible
-        >Failed to create event! Make sure someone isn't hosting the same event!
-        Please try again.</b-alert
-      >
+      <b-alert variant="success" @dismissed="submitFeedback" :show="submitSuccess" dismissible>
+        Successfully created event! Close the banner to return to home
+        page.
+      </b-alert>
+      <b-alert variant="danger" @dismissed="submitFeedbackFailed" :show="submitFailed" dismissible>
+        Failed to create event! Make sure someone isn't hosting the same event!
+        Please try again.
+      </b-alert>
     </div>
     <div id="AddEvent">
       <h2>Create Your Event</h2>
@@ -64,28 +58,14 @@
           </div>
           <div class="time">
             <label for="event-time-end">End Time:</label>
-            <input
-              id="event-time-end"
-              v-model="endTime"
-              type="time"
-              class="form-control"
-              required
-            />
+            <input id="event-time-end" v-model="endTime" type="time" class="form-control" required />
           </div>
         </div>
 
         <label for="event-capacity">Capacity:</label>
-        <input
-          id="event-capacity"
-          v-model="capacity"
-          type="number"
-          class="form-control"
-          required
-        />
+        <input id="event-capacity" v-model="capacity" type="number" class="form-control" required />
         <div class="button-container">
-          <button type="submit" class="btn btn-outline-primary create-button">
-            Create Event
-          </button>
+          <button type="submit" class="btn btn-outline-primary create-button">Create Event</button>
         </div>
       </form>
     </div>

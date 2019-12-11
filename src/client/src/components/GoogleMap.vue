@@ -16,18 +16,20 @@ export default {
         center: { lat: 42.350695, lng: -71.106439 }
       });
       /* eslint-disable no-unused-vars */
+      /* eslint-disable no-console */
+
       const markers = this.$store.getters["getEvents"].map(location => {
         const marker = new google.maps.Marker({
           position: {
-            lat: location["lat"],
-            lng: location["lng"]
+            lat: Number(location["lat"]),
+            lng: Number(location["lng"])
           },
           map: map
         });
         var infowindow = new google.maps.InfoWindow();
         google.maps.event.addListener(marker, "click", function() {
           infowindow.setContent(
-            `<div style="font-weight:700;padding-bottom:0px;text-align:center;font-size:1rem;">${location.content.title}</div><div style="padding-top:.3rem;text-align:center;">${location.content.description}</div><div style="text-align:center; padding-top: .2rem;">Time: ${location.content.startTime} - ${location.content.endTime}</div><div style="text-align:center;"><a href="https://www.google.com/" target="_blank">Learn More</a></div>`
+            `<div style="font-weight:700;padding-bottom:0px;text-align:center;font-size:1rem;">${location.title}</div><div style="padding-top:.3rem;text-align:center;">${location.description}</div><div style="text-align:center; padding-top: .2rem;">Time: ${location.startTime} - ${location.endTime}</div><div style="text-align:center;"><a href="https://www.google.com/" target="_blank">Learn More</a></div>`
           );
           infowindow.open(map, this);
         });
