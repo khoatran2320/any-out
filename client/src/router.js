@@ -34,6 +34,14 @@ const router = new Router({
       // meta: {
       //   requiresAuth: true
       // }
+    },
+    {
+      path: "/create-event",
+      name: "create-event",
+      component: () => import("./components/CreateEvent.vue")
+      // meta: {
+      //   requiresAuth: true
+      // }
     }
   ]
 });

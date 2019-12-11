@@ -6,8 +6,7 @@
         @dismissed="signupFeedback"
         :show="!signupFailed"
         dismissible
-        >Signup Successful! Close the banner to return to home page.</b-alert
-      >
+      >Signup Successful! Close the banner to return to home page.</b-alert>
     </div>
     <div v-if="signupFailed">
       <b-alert
@@ -15,32 +14,58 @@
         @dismissed="signupFeedbackFailed"
         :show="!this.signupSuccess"
         dismissible
-        >Signup Failed! Please try again.</b-alert
-      >
+      >Signup Failed! Please try again.</b-alert>
     </div>
     <div id="login-box">
       <div class="left-box">
         <h1>Sign Up</h1>
-        <form @submit.prevent="signup">
+        <form
+          @submit.prevent="signup"
+          oninput="password2.setCustomValidity(password2.value != password.value ? 'Passwords do not match.' : '')"
+        >
           <input
             type="text"
             name="username"
-            v-model="username"
+            id="username"
             placeholder="Username"
+            class="form-control"
+            v-model="username"
+            required
           />
-          <input type="text" name="email" v-model="email" placeholder="Email" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            class="form-control"
+            v-model="email"
+            required
+          />
           <input
             type="password"
             name="password"
             v-model="password"
             placeholder="Password"
+            class="form-control"
+            required
           />
-          <button type="submit" name="signup-button">Sign Up</button>
+          <input
+            type="password"
+            name="password2"
+            placeholder="Confirm Password"
+            class="form-control"
+            required
+          />
+          <div class="signupDiv">
+            <button type="submit" name="signup-button" class="btn btn-outline-primary">Sign Up</button>
+          </div>
         </form>
       </div>
       <div class="right-box">
         <span class="signinwith">Already have an account?</span>
-        <button class="sign-in">sign in</button>
+        <div class="signupDiv">
+          <button class="btn btn-outline-primary" @click="loginRedirect">Log in</button>
+        </div>
       </div>
       <div class="or">OR</div>
     </div>
@@ -67,6 +92,9 @@ export default {
       this.signupFailed = false;
 
       window.location.reload(true);
+    },
+    loginRedirect() {
+      this.$router.push("/login");
     },
     signup() {
       post("/register", {
@@ -124,6 +152,7 @@ h1 {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   display: block;
   box-sizing: border-box;
@@ -170,6 +199,7 @@ input[type="submit"]:focus {
   width: 300px;
   height: 400px;
   /* background-image: url(./images/pic1.jpg); */
+
   background-size: cover;
   background-position: center;
 }
@@ -188,25 +218,17 @@ input[type="submit"]:focus {
 }
 
 .right-box .signinwith {
+  padding-top: 5rem;
+
   display: block;
   margin-bottom: 40px;
   font-size: 28px;
-  color: #fff;
+  font-weight: 300;
   text-align: center;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
-
-button.sign-in {
-  margin-bottom: 20px;
-  width: 100px;
-  height: 36px;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  font-family: sans-serif;
-  font-weight: 500;
-  transition: 0.2s ease;
-  cursor: pointer;
-  background-color: #d4bba9;
+.signupDiv {
+  margin-top: 0;
+  text-align: center;
+  width: 100%;
 }
 </style>
