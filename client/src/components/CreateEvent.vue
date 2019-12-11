@@ -14,6 +14,11 @@
         dismissible
       >Failed to create event! Please try again.</b-alert>
     </div>
+    <div class = "header">
+            <router-link to="/" class = "btn btn-outline-primary Logo"><img class = "image" src = "./Image/LOGO.png"></router-link>
+            <router-link to="/signin" class = "btn btn-outline-primary SignIn">SIGN IN</router-link>
+            <router-link class="btn btn-outline-primary Join" to="/signup">JOIN</router-link>
+    </div>
     <div id="AddEvent">
       <h2>Create Your Event</h2>
       <form @submit.prevent="createEventSubmit">
@@ -159,6 +164,33 @@ export default {
 </script>
 
 <style>
+.header{
+  margin: -8px -10px -10px -10px;
+  width: 102%; height: 70px;
+  background-color: #173F5F; 
+}
+
+.image{
+    width: 50px; height: 50px;
+}
+
+.Logo{
+    background-color: #173F5F; margin-top: 8px; 
+    border: none; margin-left: 5%;
+}
+
+.SignIn{
+    background-color: none; color: #3CAEA3; float: right;
+    margin-top: 20px; width: 100px; height: 45px; font-size: 19px;
+    border: none; font-weight: 700; margin-right: 2%;
+}
+
+.Join{
+    background-color: #173F5F; color: #ED553B; float: right;
+    margin-top: 20px; width: 80px; height: 45px; font-size: 19px; 
+    border: none; font-weight: 700; margin-right: 0.3%; margin-right: 0;
+}
+
 #AddEvent * {
   box-sizing: border-box;
 }
@@ -189,6 +221,14 @@ h3 {
 }
 .create-button {
   margin-top: 1.5rem;
+  background: #e6e3da;
+  border: none;
+  border-radius: 2px;
+  color: #404040;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: 0.2s ease;
+  cursor: pointer;
 }
 
 .start-end-time {

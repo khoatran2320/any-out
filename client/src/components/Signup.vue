@@ -16,6 +16,9 @@
         dismissible
       >Signup Failed! Please try again.</b-alert>
     </div>
+    <div class = "header">
+            <router-link to="/" class = "btn btn-outline-primary Logo"><img class = "image" src = "./Image/LOGO.png"></router-link>
+    </div>
     <div id="login-box">
       <div class="left-box">
         <h1>Sign Up</h1>
@@ -126,6 +129,21 @@ body {
   font-weight: 300;
 }
 
+.header{
+  margin: -8px -10px -10px -10px;
+  width: 102%; height: 70px;
+  background-color: #173F5F; 
+}
+
+.image{
+    width: 50px; height: 50px;
+}
+
+.Logo{
+    background-color: #173F5F; margin-top: 8px; 
+    border: none; position: absolute; left: 50%; margin-left: -32px;
+}
+
 #login-box {
   position: relative;
   margin: 5% auto;
@@ -169,16 +187,16 @@ input[type="password"] {
   transition: 0.2s ease;
 }
 
-input[type="submit"] {
+button {
   margin-bottom: 28px;
-  width: 120px;
-  height: 32px;
-  background: #9edceb;
+  margin-left: 0;
+  width: 110px;
+  height: 35px;
+  background: #e6e3da;
   border: none;
   border-radius: 2px;
-  color: #fff;
-  font-family: sans-serif;
-  font-weight: 500;
+  color: #404040;
+  font-weight: 600;
   text-transform: uppercase;
   transition: 0.2s ease;
   cursor: pointer;
