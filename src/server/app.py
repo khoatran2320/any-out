@@ -47,9 +47,12 @@ def login():
 @app.route("/get-events", methods=['GET'])
 def getEvents():
     cursors = mongo.db.events.find()
-    return_events = {}
-    for doc in cursors:
+    return_events = {0: mongo.db.events.count_documents({})}
+
+    for doc, it in zip(cursors, range(1, mongo.db.events.count_documents({})+1)):
+        print(it)
         event = {
+            'id': doc['id'],
             'title': doc['title'],
             'description': doc['description'],
             'address': doc['address'],
@@ -59,7 +62,7 @@ def getEvents():
             'endTime': doc['endTime'],
             'capacity': doc['capacity']
         }
-        return_events[doc['id']] = event
+        return_events[it] = event
     return return_events
 
 
