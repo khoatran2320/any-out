@@ -1,5 +1,5 @@
 from bson.json_util import dumps
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, make_response
 from flask_pymongo import PyMongo
 
 from flask_cors import CORS
@@ -10,6 +10,7 @@ import AuthenticationService
 # from flask_cors import CORS
 # from AuthenticationService.py import AuthenticationService as auth
 
+import uuid
 
 app = Flask(__name__)
 
@@ -25,6 +26,22 @@ db = mongo.db
 @app.route("/", methods=["GET"])
 def home():
     return dumps(mongo.db.users.find())
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    email = request.form["email"]
+    password = AuthenticationService.hashPassword(request.form["password"])
+    findresult = db.users.find_one({'Email':email})
+    if password in findresult.values():
+        #cookie = make_response('HelloWorld')
+        res = make_response("Setting a cookie")
+        res.set_cookie('userid',value = str(uuid.uuid1()),max_age = 10,domain="127.0.0.1:4000/login")
+        return True
+    else:
+        return False
+#db.users.update({"Email":email}, {"$set": {"userid", userid}}, False, True)
+
 
 
 @app.route('/register', methods=['POST'])
