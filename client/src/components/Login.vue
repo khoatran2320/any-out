@@ -1,26 +1,26 @@
 <template>
   <div>
-    <div v-if="signipSuccess">
+    <div v-if="loginSuccess">
       <b-alert
         variant="success"
-        @dismissed="signipFeedback"
-        :show="!signinFailed"
+        @dismissed="loginFeedback"
+        :show="!loginFailed"
         dismissible
-      >Signin Successful! Close the banner to return to home page.</b-alert>
+      >Login Successful! Close the banner to return to home page.</b-alert>
     </div>
-    <div v-if="signinFailed">
+    <div v-if="loginFailed">
       <b-alert
         variant="danger"
-        @dismissed="signinFeedbackFailed"
-        :show="!this.signinSuccess"
+        @dismissed="loginFeedbackFailed"
+        :show="!this.loginSuccess"
         dismissible
-      >Signin Failed! Please try again.</b-alert>
+      >Login Failed! Please try again.</b-alert>
     </div>
     <div id="login-box">
       <div class="left-box">
-        <h1>Sign In</h1>
+        <h1>Log In</h1>
         <form
-          @submit.prevent="signin"
+          @submit.prevent="login"
         >
           <input
             type="text"
@@ -48,15 +48,15 @@
             class="form-control"
             required
           />
-          <div class="signinDiv">
-            <button type="submit" name="signin-button" class="btn btn-outline-primary">Sign In</button>
+          <div class="loginDiv">
+            <button type="submit" name="login-button" class="btn btn-outline-primary">Sign In</button>
           </div>
         </form>
       </div>
       <div class="right-box">
-        <span class="signinwith">Need an account?</span>
-        <div class="signinDiv">
-          <button class="btn btn-outline-primary" @click="loginRedirect">Sign Up</button>
+        <span class="loginwith">Need an account?</span>
+        <div class="loginDiv">
+          <button class="btn btn-outline-primary" @click="SignupRedirect">Sign Up</button>
         </div>
       </div>
       <div class="or">OR</div>
@@ -67,28 +67,28 @@
 import { post } from "../scripts/post";
 
 export default {
-  name: "Signin",
+  name: "Login",
   data: function() {
     return {
-      signinSuccess: false,
-      signinFailed: false
+      loginSuccess: false,
+      loginFailed: false
     };
   },
   methods: {
-    signinFeedback() {
-      this.signinSuccess = false;
+    loginFeedback() {
+      this.loginSuccess = false;
 
       this.$router.push("/");
     },
-    signinFeedbackFailed() {
-      this.signinFailed = false;
+    loginFeedbackFailed() {
+      this.loginFailed = false;
 
       window.location.reload(true);
     },
-    loginRedirect() {
-      this.$router.push("/login");
+    SignupRedirect() {
+      this.$router.push("/signup");
     },
-    signin() {
+    lognin() {
       post("/register", {
         username: this.username,
         email: this.email,
@@ -208,7 +208,7 @@ input[type="submit"]:focus {
   text-align: center;
 }
 
-.right-box .signinwith {
+.right-box .loginwith {
   padding-top: 5rem;
 
   display: block;
@@ -217,7 +217,7 @@ input[type="submit"]:focus {
   font-weight: 300;
   text-align: center;
 }
-.signupDiv {
+.loginDiv {
   margin-top: 0;
   text-align: center;
   width: 100%;

@@ -28,15 +28,31 @@ const router = new Router({
       // beforeEnter: (to, from, next) => redirectIfLoggedIn(next)
     },
     {
-    path: "/signin",
-    name: "signin",
-    component: () => import("./components/Signin.vue")
+    path: "/login",
+    name: "login",
+    component: () => import("./components/Login.vue")
     // beforeEnter: (to, from, next) => redirectIfLoggedIn(next)
     },
     {
       path: "/browse",
       name: "browse",
       component: () => import("./views/Browse.vue")
+      // meta: {
+      //   requiresAuth: true
+      // }
+    },
+    {
+      path: "/account",
+      name: "account",
+      component: () => import("./views/Account.vue")
+      // meta: {
+      //   requiresAuth: true
+      // }
+    },
+    {
+      path: "/resetpassword",
+      name: "resetpassword",
+      component: () => import("./components/resetpassword.vue")
       // meta: {
       //   requiresAuth: true
       // }
