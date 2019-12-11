@@ -2,7 +2,7 @@
 from bson.json_util import dumps
 from flask import Flask, render_template, request, jsonify, Response, session
 from flask_pymongo import PyMongo
-
+import pandas
 from flask_cors import CORS
 
 import hashlib
@@ -44,11 +44,18 @@ def login():
     return Response(status=400)
 
 
-# @app.route("/get-events", methods=['GET'])
-# def getEvents():
-#     cursors = mongo.db.events.find()
-#     return_response = {}
-#     for event in cursors:
+@app.route("/get-events", methods=['GET'])
+def getEvents():
+     cursors = mongo.db.events.find()
+     return_response = {}
+     mongo_events = list(cursors)
+     for num,event in enumerate(mongo_events):
+        json_export = event.to_json("event.json")
+        return json_export
+        
+        
+      
+     
 
 
 @app.route('/register', methods=['POST'])
