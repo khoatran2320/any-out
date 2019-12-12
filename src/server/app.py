@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify, Response, session, j
 from flask_pymongo import PyMongo
 
 from flask_cors import CORS
-
+import time
 import hashlib
 
 
@@ -107,6 +107,23 @@ def new_event():
 
     return Response(status=200)
 
+@app.route('/event/<event_id>')
+def event(event_id):
+    t= time.localtime()
+    current_time = time.strftime("%H:%M",t)
+    
+    event = event.find_one({'id': event_id})
+    if event:
+        if event['endTime'] < current_time:
+            db.events.delete_one({'id': event_id})
+            return Response(status=100)
+        else:
+            return Response(status=200)
+    else:
+        return Response(status=400)
+
+ 
+    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=4000, debug=True)
