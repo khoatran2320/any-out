@@ -18,16 +18,17 @@ Anyout showcases all the features of a fullstack web application. The frontend a
 HOW TO RUN THE PROJECT:
 Both the backend and frontend must run stimultaneously for proper connection. The instructions below show how one can run both servers at the same time. The instructions are only for macOS devices.
 
+- Clone this repo
+  1. run `git clone https://github.com/khoatran2320/any-out.git`
 - Starting the frontend:
-
-  1. Make sure the device has npm and vue installed
+  1. Make sure the device has npm and vue installed (run `sudo npm install -g @vue/cli` to install vue, instructions to install npm can be found here: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
   2. cd into the client folder
   3. run `npm install`
   4. run `npm run serve`
   5. open browser and go to `http://localhost:8080/`
 
 - Starting the backend:
-  1. Make sure the device has pip3, python3, mongodb and the mongodb command line is accessible
+  1. Make sure the device has pip3, python3, mongodb and the mongodb command line is accessible (instructions to install mongodb can be found here: https://docs.mongodb.com/manual/installation/)
   2. open the terminal and access the mongo shell with the command `mongo`
   3. run `use anyout` to create a database for the project on the local machine
   4. run `db.createCollection("users")` to create a collection for the users
