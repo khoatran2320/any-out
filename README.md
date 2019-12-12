@@ -34,8 +34,11 @@ Both the backend and frontend must run stimultaneously for proper connection. Th
   5. run `db.createCollection("events")` to create a collection for the events
   6. run `show collections` and ensure that the collections are created properly
   7. open a new terminal and cd into the server folder
-  8. run `pip3 install -r requirements.txt`
-  9. run `python3 app.py`
-  10. the backend should now run on `http://localhost:4000/`
+  8. run `pip3 install virtualenv`
+  9. run `python3 -m venv env`
+  10. run `source env/bin/activate`
+  11. run `pip3 install -r requirements.txt`
+  12. run `python3 app.py`
+  13. the backend should now run on `http://localhost:4000/`
 
 **Make sure the backend and frontend are both run simultaneously on separate terminals**
