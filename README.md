@@ -21,7 +21,7 @@ Both the backend and frontend must run stimultaneously for proper connection. Th
 - Clone this repo
   1. run `git clone https://github.com/khoatran2320/any-out.git`
 - Starting the frontend:
-  1. Make sure the device has npm and vue installed
+  1. Make sure the device has npm and vue installed (run `sudo npm install -g @vue/cli` to install vue, instructions to install npm can be found here: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
   2. cd into the client folder
   3. run `npm install`
   4. run `npm run serve`
