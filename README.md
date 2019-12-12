@@ -28,7 +28,7 @@ Both the backend and frontend must run stimultaneously for proper connection. Th
   5. open browser and go to `http://localhost:8080/`
 
 - Starting the backend:
-  1. Make sure the device has pip3, python3, mongodb and the mongodb command line is accessible
+  1. Make sure the device has pip3, python3, mongodb and the mongodb command line is accessible (instructions to install mongodb can be found here: https://docs.mongodb.com/manual/installation/)
   2. open the terminal and access the mongo shell with the command `mongo`
   3. run `use anyout` to create a database for the project on the local machine
   4. run `db.createCollection("users")` to create a collection for the users
