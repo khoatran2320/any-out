@@ -6,7 +6,7 @@
         @dismissed="signupFeedback"
         :show="!signupFailed"
         dismissible
-      >Signup Successful! Close the banner to return to home page.</b-alert>
+      >Signup Successful! Close the banner to log in.</b-alert>
     </div>
     <div v-if="signupFailed">
       <b-alert
@@ -39,7 +39,8 @@
             type="email"
             name="email"
             id="email"
-            oninput="email.setCustomValidity('Please signup with a BU email');email.value = ''"
+            oninvalid="email.setCustomValidity('Please signup with a BU email')"
+            oninput="setCustomValidity('')"
             placeholder="Email"
             class="form-control"
             required
@@ -90,7 +91,7 @@ export default {
     signupFeedback() {
       this.signupSuccess = false;
 
-      this.$router.push("/");
+      this.$router.push("/login");
     },
     signupFeedbackFailed() {
       this.signupFailed = false;

@@ -6,8 +6,7 @@
         @dismissed="signinFeedback"
         :show="!signinFailed"
         dismissible
-        >Login Successful! Close the banner to return to home page.</b-alert
-      >
+      >Login Successful! Close the banner to start browsin events.</b-alert>
     </div>
     <div v-if="signinFailed">
       <b-alert
@@ -15,8 +14,7 @@
         @dismissed="signinFeedbackFailed"
         :show="!this.signinSuccess"
         dismissible
-        >Signin Failed! Please try again.</b-alert
-      >
+      >Signin Failed! Please try again.</b-alert>
     </div>
     <div id="login-box">
       <div class="left-box">
@@ -39,22 +37,14 @@
             required
           />
           <div class="signinDiv">
-            <button
-              type="submit"
-              name="signin-button"
-              class="btn btn-outline-primary"
-            >
-              Sign In
-            </button>
+            <button type="submit" name="signin-button" class="btn btn-outline-primary">Sign In</button>
           </div>
         </form>
       </div>
       <div class="right-box">
         <span class="signinwith">Need an account?</span>
         <div class="signinDiv">
-          <button class="btn btn-outline-primary" @click="loginRedirect">
-            Sign Up
-          </button>
+          <button class="btn btn-outline-primary" @click="loginRedirect">Sign Up</button>
         </div>
       </div>
       <div class="or">OR</div>
@@ -74,7 +64,7 @@ export default {
   methods: {
     signinFeedback() {
       this.signinSuccess = false;
-      this.$router.push("/");
+      this.$router.push("/browse");
     },
     signinFeedbackFailed() {
       this.signinFailed = false;

@@ -1,5 +1,4 @@
 // Places Autocomplete was implemented with the help of Henrik Fogelberg's code obtained at https://medium.com/dailyjs/google-places-autocomplete-in-vue-js-350aa934b18d
-
 <template>
   <div>
     <div>

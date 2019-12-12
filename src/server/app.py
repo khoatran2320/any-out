@@ -35,7 +35,6 @@ db = mongo.db
 @app.route("/login", methods=['POST'])
 def login():
     user = mongo.db.users.find_one({'email': request.form['email']})
-    print(hashPassword(request.form['password']))
     if user:
         if user['password'] == hashPassword(request.form['password']):
             response = {"key": "SID", "value": user['id']}
@@ -50,7 +49,6 @@ def getEvents():
     return_events = {0: mongo.db.events.count_documents({})}
 
     for doc, it in zip(cursors, range(1, mongo.db.events.count_documents({})+1)):
-        print(it)
         event = {
             'id': doc['id'],
             'title': doc['title'],
