@@ -62,7 +62,12 @@ def getEvents():
             'endTime': doc['endTime'],
             'capacity': doc['capacity']
         }
-        return_events[it] = event
+        t= time.localtime()
+        current_time = time.strftime("%H:%M",t) 
+        if event['endTime'] < current_time:
+            db.events.delete_one({'id': event_id})
+        else:
+            return_events[it] = event
     return return_events
 
 
@@ -107,20 +112,20 @@ def new_event():
 
     return Response(status=200)
 
-@app.route('/event/<event_id>')
+@app.route('/event/<event_id>/')
 def event(event_id):
-    t= time.localtime()
-    current_time = time.strftime("%H:%M",t)
-    
     event = event.find_one({'id': event_id})
     if event:
-        if event['endTime'] < current_time:
-            db.events.delete_one({'id': event_id})
-            return Response(status=100)
-        else:
-            return Response(status=200)
+        return Response(status=200)
     else:
         return Response(status=400)
+
+
+
+#@app.route('/event/<event_id>/update')
+#def event_update(event_id):
+
+
 
  
     
