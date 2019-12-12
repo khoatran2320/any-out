@@ -18,8 +18,9 @@ Anyout showcases all the features of a fullstack web application. The frontend a
 HOW TO RUN THE PROJECT:
 Both the backend and frontend must run stimultaneously for proper connection. The instructions below show how one can run both servers at the same time. The instructions are only for macOS devices.
 
+- Clone this repo
+  1. run `git clone https://github.com/khoatran2320/any-out.git`
 - Starting the frontend:
-
   1. Make sure the device has npm and vue installed
   2. cd into the client folder
   3. run `npm install`
