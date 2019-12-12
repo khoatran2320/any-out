@@ -29,7 +29,7 @@ export default {
         var infowindow = new google.maps.InfoWindow();
         google.maps.event.addListener(marker, "click", function() {
           infowindow.setContent(
-            `<div style="font-weight:700;padding-bottom:0px;text-align:center;font-size:1rem;">${location.title}</div><div style="padding-top:.3rem;text-align:center;">${location.description}</div><div style="text-align:center; padding-top: .2rem;">Time: ${location.startTime} - ${location.endTime}</div><div style="text-align:center;"><a href="https://www.google.com/" target="_blank">Learn More</a></div>`
+            `<div style="font-weight:700;padding-bottom:0px;text-align:center;font-size:1rem;">${location.title}</div><div style="font-weight:400;padding-bottom:0px;text-align:center;font-size:.8rem;">Hosted by ${location.host}</div><div style="padding-top:.3rem;text-align:center;">${location.description}</div><div style="text-align:center; padding-top: .2rem;">Time: ${location.startTime} - ${location.endTime}</div><div style="text-align:center;">Capacity: ${location.capacity} </div>`
           );
           infowindow.open(map, this);
         });
@@ -50,8 +50,8 @@ body {
 }
 
 .App {
-  width: 60vw;
-  height: 90vh;
+  width: 100vw;
+  height: 85vh;
   border-radius: 1%;
 }
 </style>

@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify, Response, session, j
 from flask_pymongo import PyMongo
 
 from flask_cors import CORS
-
+import time
 import hashlib
 
 
@@ -46,6 +46,13 @@ def login():
 @app.route("/get-events", methods=['GET'])
 def getEvents():
     cursors = mongo.db.events.find()
+    t = time.localtime()
+    current_time = time.strftime("%H:%M", t)
+    for event in cursors:
+        if event['endTime'] < current_time:
+            db.events.delete_one({'id': event['id']})
+
+    cursors = mongo.db.events.find()
     return_events = {0: mongo.db.events.count_documents({})}
 
     for doc, it in zip(cursors, range(1, mongo.db.events.count_documents({})+1)):
@@ -58,7 +65,9 @@ def getEvents():
             'lng': doc['lng'],
             'startTime': doc['startTime'],
             'endTime': doc['endTime'],
-            'capacity': doc['capacity']
+            'capacity': doc['capacity'],
+            'host': mongo.db.users.find_one({'id': doc['host']})['name'],
+            'hostID': doc['host']
         }
         return_events[it] = event
     return return_events

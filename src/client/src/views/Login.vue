@@ -6,7 +6,7 @@
         @dismissed="signinFeedback"
         :show="!signinFailed"
         dismissible
-      >Login Successful! Close the banner to start browsin events.</b-alert>
+      >Login Successful! Close the banner to start browsing events.</b-alert>
     </div>
     <div v-if="signinFailed">
       <b-alert

@@ -21,7 +21,6 @@
           class="form-control"
           required
           placeholder="What's the Name of Your Event?"
-          v-model="title"
           autofocus
         />
         <label for="event-description">Event Description</label>
@@ -29,7 +28,6 @@
           id="event-description"
           type="text"
           class="form-control"
-          v-model="description"
           required
           placeholder="Describe Your Event"
         ></textarea>
@@ -39,7 +37,6 @@
           type="text"
           class="form-control"
           required
-          v-model="location"
           ref="eventLocation"
           placeholder="Where Are You Hosting Your Event?"
         />
@@ -48,7 +45,6 @@
             <label for="event-time-start">Start Time:</label>
             <input
               id="event-time-start"
-              v-model="startTime"
               type="time"
               class="form-control"
               required
@@ -57,12 +53,12 @@
           </div>
           <div class="time">
             <label for="event-time-end">End Time:</label>
-            <input id="event-time-end" v-model="endTime" type="time" class="form-control" required />
+            <input id="event-time-end" type="time" class="form-control" required />
           </div>
         </div>
 
         <label for="event-capacity">Capacity:</label>
-        <input id="event-capacity" v-model="capacity" type="number" class="form-control" required />
+        <input id="event-capacity" type="number" class="form-control" required />
         <div class="button-container">
           <button type="submit" class="btn btn-outline-primary create-button">Create Event</button>
         </div>
@@ -100,9 +96,10 @@ export default {
         ", " +
         ac[7]["short_name"];
       /*eslint-disable no-console*/
-      this.address = address;
+
       this.lat = lat;
       this.lng = lng;
+      this.address = address;
     });
   },
   data() {
@@ -131,11 +128,11 @@ export default {
         address: this.address,
         lat: this.lat,
         lng: this.lng,
-        description: this.description,
-        title: this.title,
-        capacity: this.capacity,
-        startTime: this.startTime,
-        endTime: this.endTime
+        description: document.getElementById("event-description").value,
+        title: document.getElementById("event-title").value,
+        capacity: document.getElementById("event-capacity").value,
+        startTime: document.getElementById("event-time-start").value,
+        endTime: document.getElementById("event-time-end").value
         /* eslint-disable no-unused-vars*/
       })
         .then(res => {

@@ -21,24 +21,11 @@
       </div>
       <div
         v-if="this.$store.getters['isLoggedIn']"
-        style="display:flex;width:28rem;justify-content:space-between;"
+        style="display:flex;width:22rem;justify-content:space-around; margin-right: 2rem"
       >
-        <router-link to="/browse" class="btn btn-outline-primary">Browse Events</router-link>
+        <button @click="browse" class="btn btn-outline-primary">Browse Events</button>
         <router-link to="/create-event" class="btn btn-outline-primary">Create Event</router-link>
-        <li class="nav-item dropdown form-inline my-1 my-lg-0">
-          <button
-            class="btn btn-outline-primary nav-link dropdown-toggle"
-            id="navbarDropdown"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            style="margin-right:5rem;"
-          >User</button>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <button class="dropdown-item">Account</button>
-            <button class="dropdown-item" @click="logoutButton">Log out</button>
-          </div>
-        </li>
+        <button class="btn btn-outline-primary" @click="logoutButton">Log out</button>
       </div>
     </nav>
     <router-view>
@@ -52,6 +39,11 @@ import { deleteCookie } from "./scripts/authentication";
 export default {
   name: "app",
   methods: {
+    browse() {
+      this.$router.push("/browse");
+      this.$store.dispatch("retrieveEvents");
+    },
+
     logoutButton() {
       deleteCookie("SID");
       this.$router.push("/");
