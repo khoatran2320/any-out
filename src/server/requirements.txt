@@ -1,5 +1,5 @@
 Flask==1.1.1
-flask-cors==3.0.8
+flask-cors==3.0.9
 pymongo==3.9.0
 Werkzeug==0.16.0
 mongoengine==0.18.2
